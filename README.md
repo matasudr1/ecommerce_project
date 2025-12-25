@@ -2,7 +2,7 @@
 
 A production-ready data engineering project demonstrating ETL pipelines using AWS Glue, PySpark, and Terraform.
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────┐
@@ -40,7 +40,7 @@ A production-ready data engineering project demonstrating ETL pipelines using AW
 └─────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 data_engineering_project_ecommerce/
@@ -106,7 +106,7 @@ data_engineering_project_ecommerce/
 └── README.md                      # This file
 ```
 
-## 🎯 Medallion Architecture Explained
+## Medallion Architecture Explained
 
 ### Bronze Layer (Raw)
 - **Purpose**: Store data exactly as received from source systems
@@ -133,7 +133,7 @@ data_engineering_project_ecommerce/
 - **Format**: Parquet, optimized for query patterns
 - **Use Case**: Dashboards, reports, business decisions
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Python 3.9+
@@ -193,7 +193,7 @@ python scripts/upload_to_s3.py --bucket your-bucket-name --source data/raw
 aws glue start-job-run --job-name ecommerce-bronze-ingestion
 ```
 
-## 📊 Data Model
+## Data Model
 
 ### Source Tables
 
@@ -241,7 +241,7 @@ aws glue start-job-run --job-name ecommerce-bronze-ingestion
                         └─────────┘
 ```
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -254,7 +254,7 @@ pytest tests/ --cov=src --cov-report=html
 pytest tests/test_transformations.py -v
 ```
 
-## 📈 Key Metrics Generated
+## Key Metrics Generated
 
 | Metric | Description | Grain |
 |--------|-------------|-------|
@@ -264,26 +264,26 @@ pytest tests/test_transformations.py -v
 | `customer_lifetime_value` | Total spend per customer | Customer |
 | `category_performance` | Revenue by category | Category/Month |
 
-## 🔐 Security Considerations
+## Security Considerations
 
 - S3 buckets are encrypted at rest (SSE-S3)
 - Glue jobs use IAM roles with least-privilege access
 - No hardcoded credentials - use AWS Secrets Manager
 - VPC endpoints for private connectivity (optional)
 
-## 📚 Learning Resources
+## Learning Resources
 
 - [AWS Glue Documentation](https://docs.aws.amazon.com/glue/)
 - [PySpark Guide](https://spark.apache.org/docs/latest/api/python/)
 - [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 - [Medallion Architecture](https://www.databricks.com/glossary/medallion-architecture)
-## 🛠️ Local Development Notes
+## Local Development Notes
 
 **Windows users:** PySpark requires Hadoop binaries (`winutils.exe`). The ETL code is designed for AWS Glue (Linux-based) where this isn't needed. To run locally on Windows, either:
 - Set up WSL (Windows Subsystem for Linux)
 - Download winutils.exe and set `HADOOP_HOME`
 
 The data generator works on all platforms without additional setup.
-## 📝 License
+## License
 
 MIT License - feel free to use this project for learning and development.

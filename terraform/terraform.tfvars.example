@@ -1,0 +1,64 @@
+# =============================================================================
+# TERRAFORM VARIABLES - EXAMPLE VALUES
+# =============================================================================
+#
+# Copy this file to terraform.tfvars and fill in your values:
+#   cp terraform.tfvars.example terraform.tfvars
+#
+# terraform.tfvars is in .gitignore so it won't be committed
+# (good practice for keeping secrets out of version control)
+#
+# =============================================================================
+
+# Project identification
+project_name = "ecommerce"
+owner        = "your-email@company.com"
+
+# Environment: dev, staging, or prod
+environment = "dev"
+
+# AWS Region
+aws_region = "eu-west-1"
+
+# -----------------------------------------------------------------------------
+# Glue Job Configuration
+# -----------------------------------------------------------------------------
+
+# Glue version (4.0 = Spark 3.3, Python 3.10)
+glue_version = "4.0"
+
+# Worker type:
+# - G.025X: 0.25 DPU (for small jobs, cheapest)
+# - G.1X: 1 DPU (standard)
+# - G.2X: 2 DPU (for memory-intensive jobs)
+glue_worker_type = "G.1X"
+
+# Number of workers (minimum 2 for distributed processing)
+glue_number_of_workers = 2
+
+# Job timeout in minutes
+glue_timeout_minutes = 60
+
+# -----------------------------------------------------------------------------
+# Pipeline Configuration
+# -----------------------------------------------------------------------------
+
+# Tables to process
+tables = ["customers", "products", "orders", "order_items"]
+
+# Enable job bookmarks for incremental processing
+enable_job_bookmarks = true
+
+# Data retention in days
+data_retention_days = 365
+
+# -----------------------------------------------------------------------------
+# Cost Control
+# -----------------------------------------------------------------------------
+
+# Enable crawlers (can add cost if run frequently)
+enable_crawler = false
+
+# Crawler schedule (if enabled)
+# This cron expression means: "Every day at 6 AM UTC"
+crawler_schedule = "cron(0 6 * * ? *)"

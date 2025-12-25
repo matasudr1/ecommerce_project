@@ -1,0 +1,48 @@
+{
+  "bronze_ingestion": {
+    "description": "Ingest raw data to Bronze layer",
+    "script_path": "src/glue_jobs/bronze/ingest_raw_data.py",
+    "default_arguments": {
+      "--job-bookmark-option": "job-bookmark-enable",
+      "--enable-metrics": "true",
+      "--enable-continuous-cloudwatch-log": "true"
+    },
+    "worker_type": "G.1X",
+    "number_of_workers": 2,
+    "timeout_minutes": 60
+  },
+  "silver_transformation": {
+    "description": "Transform Bronze to Silver layer",
+    "script_path": "src/glue_jobs/silver/transform_to_silver.py",
+    "default_arguments": {
+      "--job-bookmark-option": "job-bookmark-disable",
+      "--enable-metrics": "true",
+      "--enable-continuous-cloudwatch-log": "true"
+    },
+    "worker_type": "G.1X",
+    "number_of_workers": 2,
+    "timeout_minutes": 60
+  },
+  "gold_dimensions": {
+    "description": "Build Gold layer dimension tables",
+    "script_path": "src/glue_jobs/gold/dim_tables.py",
+    "default_arguments": {
+      "--job-bookmark-option": "job-bookmark-disable",
+      "--enable-metrics": "true"
+    },
+    "worker_type": "G.1X",
+    "number_of_workers": 2,
+    "timeout_minutes": 30
+  },
+  "gold_fact_sales": {
+    "description": "Build Gold layer fact table",
+    "script_path": "src/glue_jobs/gold/fact_sales.py",
+    "default_arguments": {
+      "--job-bookmark-option": "job-bookmark-disable",
+      "--enable-metrics": "true"
+    },
+    "worker_type": "G.1X",
+    "number_of_workers": 2,
+    "timeout_minutes": 30
+  }
+}

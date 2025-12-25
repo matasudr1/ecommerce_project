@@ -1,0 +1,91 @@
+# =============================================================================
+# Pipeline Configuration
+# =============================================================================
+# This file contains configuration for the e-commerce data pipeline.
+# It's used by local development scripts and can be overridden by environment.
+
+pipeline:
+  name: "ecommerce-etl"
+  version: "1.0.0"
+  description: "E-commerce data pipeline with Bronze/Silver/Gold layers"
+
+# Data sources configuration
+sources:
+  customers:
+    file_pattern: "customers*.csv"
+    key_columns:
+      - customer_id
+    timestamp_column: created_at
+    
+  products:
+    file_pattern: "products*.csv"
+    key_columns:
+      - product_id
+    timestamp_column: created_at
+    
+  orders:
+    file_pattern: "orders*.csv"
+    key_columns:
+      - order_id
+    timestamp_column: order_date
+    
+  order_items:
+    file_pattern: "order_items*.csv"
+    key_columns:
+      - order_item_id
+
+# Layer configurations
+layers:
+  bronze:
+    description: "Raw data ingestion layer"
+    partition_by:
+      - _ingestion_date
+    format: parquet
+    compression: snappy
+    
+  silver:
+    description: "Cleaned and validated data"
+    partition_by: []  # No partitioning for easier joins
+    format: parquet
+    compression: snappy
+    
+  gold:
+    description: "Business-ready aggregations"
+    format: parquet
+    compression: snappy
+    tables:
+      - fact_sales
+      - dim_customer
+      - dim_product
+      - dim_date
+      - agg_daily_sales
+      - agg_product_performance
+
+# Data quality thresholds
+quality:
+  # Maximum percentage of null values allowed in required fields
+  max_null_percentage: 1.0
+  
+  # Maximum percentage of duplicates allowed
+  max_duplicate_percentage: 0.1
+  
+  # Maximum data age in hours before considered stale
+  max_data_age_hours: 48
+  
+  # Fail job if quality checks fail
+  fail_on_quality_error: true
+
+# Spark configuration for local development
+spark:
+  app_name: "EcommerceETL"
+  master: "local[*]"  # Use all available cores
+  config:
+    spark.sql.sources.partitionOverwriteMode: dynamic
+    spark.sql.parquet.compression.codec: snappy
+    spark.sql.shuffle.partitions: "8"
+    spark.driver.memory: "4g"
+
+# Logging configuration
+logging:
+  level: INFO
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

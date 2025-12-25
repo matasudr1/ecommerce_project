@@ -5,7 +5,8 @@ A production-ready data engineering project demonstrating ETL pipelines using AW
 ## Architecture
 
 ```
-<img width="2304" height="1856" alt="Gemini_Generated_Image_lgyo7flgyo7flgyo" src="https://github.com/user-attachments/assets/7f0c4459-e59c-4a2c-9906-1314b73ac3a4" />
+<img width="2304" height="1856" alt="Gemini_Generated_Image_lgyo7flgyo7flgyo" src="https://github.com/user-attachments/assets/c462aabb-23ef-49f3-8f6f-67bce40fc93e" />
+
 
 ```
 

@@ -4,12 +4,10 @@ A production-ready data engineering project demonstrating ETL pipelines using AW
 
 ## Architecture
 
-```
+
 
 <img width="1468" height="1291" alt="image" src="https://github.com/user-attachments/assets/9600ffc9-7714-4ad2-bc9c-9573049cbdc3" />
 
-
-```
 
 ## Project Structure
 

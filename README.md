@@ -104,12 +104,6 @@ data_engineering_project_ecommerce/
 
 ## Getting Started
 
-### Prerequisites
-- Python 3.9+
-- AWS CLI configured with appropriate credentials
-- Terraform 1.0+
-- Docker (optional, for local Glue development)
-
 ### Local Development
 
 1. **Clone and setup environment**
@@ -238,7 +232,6 @@ pytest tests/test_transformations.py -v
 - S3 buckets are encrypted at rest (SSE-S3)
 - Glue jobs use IAM roles with least-privilege access
 - No hardcoded credentials - use AWS Secrets Manager
-- VPC endpoints for private connectivity (optional)
 
 ## Learning Resources
 
@@ -255,4 +248,4 @@ pytest tests/test_transformations.py -v
 The data generator works on all platforms without additional setup.
 ## License
 
-MIT License - feel free to use this project for learning and development.
+MIT License

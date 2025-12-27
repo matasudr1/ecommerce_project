@@ -229,7 +229,7 @@ pytest tests/test_transformations.py -v
 
 ## Security Considerations
 
-- S3 buckets are encrypted at rest (SSE-S3)
+- S3 buckets are encrypted at rest
 - Glue jobs use IAM roles with least-privilege access
 - No hardcoded credentials - use AWS Secrets Manager
 
